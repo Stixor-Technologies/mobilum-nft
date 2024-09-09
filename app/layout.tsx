@@ -3,6 +3,7 @@ import { Jura } from "next/font/google";
 import localFont from "next/font/local";
 
 import "./globals.css";
+import Footer from "@/components/footer";
 
 const jura = Jura({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jura.className} ${furore?.variable}`}>
         {children}
+        <Footer />
       </body>
     </html>
   );
