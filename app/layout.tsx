@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Jura } from "next/font/google";
 import localFont from "next/font/local";
+import Image from "next/image";
+import Blob1 from "@/public/blobs/blob-1.svg";
+import Blob2 from "@/public/blobs/blob-2.svg";
 
 import "./globals.css";
 import Footer from "@/components/footer";
+import Header from "@/components/header";
 
 const jura = Jura({
   subsets: ["latin"],
@@ -27,8 +31,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jura.className} ${furore?.variable}`}>
-        {children}
+      <body className={`${jura.className} ${furore?.variable} bg-black`}>
+        <Image
+          src={Blob1}
+          height={450}
+          alt="services-blob"
+          className="absolute left-0 top-0 -z-10"
+        />
+
+        <Image
+          src={Blob2}
+          height={350}
+          alt="services-blob"
+          className="absolute right-0 top-0 -z-10"
+        />
+        <Header />
+
+        <main className="pt-[100px]">{children}</main>
         <Footer />
       </body>
     </html>

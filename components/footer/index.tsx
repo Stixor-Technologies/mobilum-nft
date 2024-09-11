@@ -41,7 +41,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="flex w-full max-w-[21.5rem] flex-col gap-7 xl:mr-16">
+            <div className="flex w-full max-w-[21.5rem] flex-col gap-4 sm:gap-5 xl:mr-16">
               <input
                 type="email"
                 placeholder="Enter your email"

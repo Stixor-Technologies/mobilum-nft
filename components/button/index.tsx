@@ -9,9 +9,9 @@ const Button: FC<BaseProps> = ({ variant, styles, ...props }) => {
   const getVariant = () => {
     switch (variant) {
       case "primary":
-        return " bg-gradient-green text-light-green max-w-[11.25rem] h-[3.125rem]";
+        return "bg-gradient-green text-light-green w-[7.5rem] h-[2.2rem] sm:w-[11.25rem] sm:h-[3.125rem]";
       case "secondary":
-        return "bg-white text-black max-w-[11.875rem] h-[2.5rem]";
+        return "bg-white text-black sm:w-[11.875rem] h-[2.5rem]";
 
       default:
         return "";
@@ -21,7 +21,7 @@ const Button: FC<BaseProps> = ({ variant, styles, ...props }) => {
   const { ...rest } = props;
   return (
     <button
-      className={`button-clip flex w-full items-center justify-center text-lg font-bold  ${getVariant()} ${styles}`}
+      className={`button-clip flex w-full items-center justify-center text-sm font-bold sm:text-lg ${getVariant()} ${styles}`}
       {...rest}
     />
   );
