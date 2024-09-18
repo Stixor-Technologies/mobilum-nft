@@ -1,14 +1,15 @@
-import BrickWall from "@/public/brick-wall.svg";
 import Image from "next/image";
 import Circle from "@/public/icons/circle.svg";
 import Triangle from "@/public/icons/triangle.svg";
 import AboutUs from "@/components/about";
 import Faqs from "@/components/faq";
+import ImagesList from "@/components/images-list";
+
 export default function Home() {
   return (
     <>
       <section className="container relative bg-[url('/brick-wall.svg')] bg-contain bg-[center_top] bg-no-repeat">
-        <div className="relative z-20 flex items-center py-[clamp(8rem,16vw,12rem)] 2xl:py-[20rem]">
+        <div className="relative flex items-center py-[clamp(8rem,16vw,12rem)] 2xl:py-[20rem]">
           <Image
             src={Circle}
             alt="floating-circle"
@@ -26,17 +27,10 @@ export default function Home() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-[repeat(auto-fit,_minmax(19rem,_1fr))] gap-10">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]?.map((val, index) => (
-            <div
-              key={index}
-              className="clip aspect-[308/390] rounded-lg bg-light-green"
-            />
-          ))}
-        </div>
+        <ImagesList />
       </section>
 
-      <AboutUs />
+      {/* <AboutUs /> */}
       <Faqs />
     </>
   );

@@ -57,6 +57,8 @@ const config: Config = {
             maxWidth: "100%",
             paddingLeft: "5.9375rem",
             paddingRight: "5.9375rem",
+            // paddingLeft: "67px",
+            // paddingRight: "67px",
           },
           "@screen 2xl": {
             maxWidth: "1536px",

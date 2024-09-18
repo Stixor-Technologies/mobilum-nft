@@ -2,8 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/logo.svg";
-import Wallet from "@/public/icons/wallet.svg";
-import Button from "../button";
+import WalletConnect from "../wallet-connect";
 
 const Header = () => {
   return (
@@ -22,14 +21,9 @@ const Header = () => {
             </Link>
           </div>
 
-          <Button variant="primary" styles={"uppercase"}>
-            <span className="flex gap-1 sm:gap-2">
-              <Image src={Wallet} alt="" />
-              Connect
-            </span>
-          </Button>
+          {/* {connecting && <p className="text-white">Loader</p>} */}
+          <WalletConnect />
         </div>
-        <div className="from-ferozi to-pink h-[1px] bg-gradient-to-b from-0% to-100% opacity-60" />
       </div>
     </header>
   );

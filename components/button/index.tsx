@@ -9,7 +9,7 @@ const Button: FC<BaseProps> = ({ variant, styles, ...props }) => {
   const getVariant = () => {
     switch (variant) {
       case "primary":
-        return "bg-gradient-green text-light-green w-[7.5rem] h-[2.2rem] sm:w-[11.25rem] sm:h-[3.125rem]";
+        return "bg-gradient-green text-light-green w-[7.6rem] h-[2.2rem] sm:w-[11.25rem] sm:h-[3.125rem]";
       case "secondary":
         return "bg-white text-black sm:w-[11.875rem] h-[2.5rem]";
 

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --onboard-modal-z-index: 100;
+  --onboard-modal-background: "#171717";
+}
+
 .button-clip {
   clip-path: polygon(
     0% 0%,
@@ -257,4 +262,16 @@
     7.853% 0.002%,
     7.749% 0%
   );
+}
+
+.svelte-7ee2g7 {
+  background-color: "transparent" !important;
+}
+
+.modal-item-button {
+  @apply flex w-full items-center gap-3 rounded-xl bg-black/20 px-2.5 py-2 hover:bg-black/40;
+}
+
+.modal-item-button-icon {
+  @apply rounded-full border-2 border-black/60 bg-deep-green p-2;
 }

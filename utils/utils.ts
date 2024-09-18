@@ -30,4 +30,13 @@ const footerLinks = [
   },
 ];
 
-export { footerLinks };
+const chainList = [
+  {
+    id: 8453,
+    token: "ETH",
+    label: "BASE Chain",
+    rpcUrl: "https://mainnet.base.org",
+  },
+];
+
+export { footerLinks, chainList };
