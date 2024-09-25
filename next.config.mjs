@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   images: {
-    domains: ["localhost", "ipfs.io"],
+    domains: ["moccasin-careful-snipe-849.mypinata.cloud"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ipfs.io",
+        hostname: "moccasin-careful-snipe-849.mypinata.cloud",
         pathname: "/uploads/**",
       },
     ],

@@ -1,8 +1,10 @@
 import React, { ButtonHTMLAttributes, FC } from "react";
+import Spinner from "../spinner";
 
 interface BaseProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   styles?: string;
   variant: "primary" | "secondary";
+  loading?: boolean;
 }
 
 const Button: FC<BaseProps> = ({ variant, styles, ...props }) => {
@@ -18,12 +20,15 @@ const Button: FC<BaseProps> = ({ variant, styles, ...props }) => {
     }
   };
 
-  const { ...rest } = props;
+  const { children, loading, ...rest } = props;
+
   return (
     <button
-      className={`button-clip flex w-full items-center justify-center text-sm font-bold sm:text-lg ${getVariant()} ${styles}`}
+      className={`button-clip flex items-center justify-center text-sm font-bold transition-all duration-300 hover:opacity-85 disabled:pointer-events-none disabled:opacity-50 sm:text-lg ${getVariant()} ${styles}`}
       {...rest}
-    />
+    >
+      <span>{loading ? <Spinner /> : <>{children}</>}</span>
+    </button>
   );
 };
 

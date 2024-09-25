@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Dispatch, FC } from "react";
 import Image from "next/image";
 import Wallet from "@/public/icons/wallet.svg";
 import Button from "../button";
@@ -15,76 +15,92 @@ import {
 
 import { useEffect, useState } from "react";
 import { useConnectWallet } from "@web3-onboard/react";
-// import { ethers } from "ethers";
+import { WalletState, DisconnectOptions } from "@web3-onboard/core";
+import { ChainId } from "@web3-onboard/common";
+
 import { useWalletStore } from "@/store/wallet-store";
 import CustomModal from "../shared/modal";
-import { toast } from "react-toastify";
-import { chainList } from "@/utils/utils";
+import { formatAddress, verifyChain } from "@/utils/wallet-utils";
+import { ethers } from "ethers";
+
+interface DisconnetButton {
+  wallet: WalletState;
+  disconnect: (options: DisconnectOptions) => void;
+  setIsModalOpen: Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DisconnectButton: FC<DisconnetButton> = ({
+  wallet,
+  disconnect,
+  setIsModalOpen,
+}) => {
+  const walletConnected = useWalletStore((state) => state.setIsWalletConnected);
+  const setIsSupportedChain = useWalletStore(
+    (state) => state.setIsSupportedChain,
+  );
+
+  return (
+    <button
+      onClick={() => {
+        if (wallet) {
+          disconnect({ label: wallet?.label });
+          walletConnected(false);
+          setIsModalOpen(false);
+          setIsSupportedChain(false);
+        }
+      }}
+      className="modal-item-button"
+    >
+      <div className="modal-item-button-icon">
+        <FaArrowRightToBracket size={16} />
+      </div>
+      <span>Disconnect</span>
+    </button>
+  );
+};
 
 const WalletConnect = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  //   const walletInfo = useWalletStore((state) => state.wallet);
-  const updateWallet = useWalletStore((state) => state.updateWallet);
-
   const isWalletConnected = useWalletStore((state) => state.isWalletConnected);
-  const walletConnected = useWalletStore((state) => state.setWalletConnected);
+  const walletConnected = useWalletStore((state) => state.setIsWalletConnected);
+  const isRehydrated = useWalletStore((state) => state.isRehydrated);
+
   const [isCopied, setIsCopied] = useState(false);
-  const [unsupportedChain, setUnsupportedChain] = useState<boolean>(false);
+
+  const isSupportedChain = useWalletStore((state) => state.isSupportedChain);
+  const setIsSupportedChain = useWalletStore(
+    (state) => state.setIsSupportedChain,
+  );
 
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
-  // const [ethersProvider, setProvider] =
-  //   useState<ethers.providers.Web3Provider | null>();
 
   // useEffect(() => {
-  //   // If the wallet has a provider than the wallet is connected
-  //   if (wallet?.provider) {
-  //     setProvider(new ethers.providers.Web3Provider(wallet.provider, "any"));
-  //     // if using ethers v6 this is:
-  //     // ethersProvider = new ethers.BrowserProvider(wallet.provider, 'any')
+  //   if (wallet) {
+  //     const isSupported = verifyChain(wallet);
+  //     setIsSupportedChain(!isSupported);
   //   }
   // }, [wallet]);
-  // "0x2105"
-  // "0x1"
-
-  useEffect(() => {
-    // This useEffect runs whenever the wallet object updates (like on chain change)
-    if (wallet) {
-      const currentChainId = parseInt(wallet?.chains?.[0]?.id, 16);
-      const isSupportedChain = chainList.some(
-        (chain) => chain.id === currentChainId,
-      );
-      if (!isSupportedChain) {
-        setUnsupportedChain(true);
-      } else {
-        setUnsupportedChain(false);
-      }
-    }
-  }, [wallet]);
 
   const connectWallet = async () => {
     const connectedWallets = await connect();
 
-    if (connectedWallets) {
-      updateWallet({
-        accountAddress: connectedWallets?.[0]?.accounts?.[0]?.address,
-        chainId: connectedWallets?.[0]?.chains?.[0]?.id,
-      });
+    if (connectedWallets?.length) {
+      const isSupported = verifyChain(connectedWallets?.[0]?.chains?.[0]?.id);
+      setIsSupportedChain(isSupported);
       walletConnected(true);
     }
   };
 
-  const formatAddress = (address: string) => {
-    const start = address.slice(0, 4).toUpperCase();
-    const end = address.slice(-4).toUpperCase();
-    return `${start}…${end}`;
-  };
+  // console.log("wallet", wallet);
 
   const copyToClipboard = async () => {
     const address = wallet?.accounts?.[0]?.address;
     if (address) {
       try {
-        await navigator.clipboard.writeText(address);
+        await navigator.clipboard.writeText(
+          ethers.getAddress(wallet?.accounts?.[0]?.address),
+        );
         setIsCopied(true);
         // toast("Copied Address", {
         //   position: "top-right",
@@ -101,33 +117,44 @@ const WalletConnect = () => {
     }
   };
 
-  //   console.log("walletChanged", wallet);
+  // if (wallet) {
+  //   let checksum = ethers.getAddress(wallet?.accounts?.[0]?.address);
+  //   console.log("checksum", checksum);
+  // }
 
-  //   console.log("isWalletConnected", "wallet", isWalletConnected, !wallet);
+  useEffect(() => {
+    if (wallet?.provider) {
+      const provider = wallet.provider;
 
-  const disconnectBtn = () => {
-    return (
-      <button
-        onClick={() => {
-          console.log("disconnet");
-          disconnect({ label: wallet?.label });
-          setIsModalOpen(false);
-        }}
-        className="modal-item-button"
-      >
-        <div className="modal-item-button-icon">
-          <FaArrowRightToBracket size={16} />
-        </div>
+      provider.on("accountsChanged", (accounts: string[]) => {
+        if (accounts.length === 0) {
+          walletConnected(false);
+          setIsSupportedChain(false);
+          console.log("Wallet disconnected - no accounts found");
+        }
+      });
 
-        <span>Disconnect</span>
-      </button>
-    );
-  };
+      provider.on("chainChanged", (chainId: ChainId) => {
+        // console.log("chainid", chainId);
+        const isSupported = verifyChain(chainId);
+        setIsSupportedChain(isSupported);
+      });
+
+      // Clean up event listeners when component unmounts or wallet changes
+      return () => {
+        provider.removeListener("accountsChanged", () => {});
+        provider.removeListener("chainChanged", () => {});
+      };
+    }
+  }, [wallet, walletConnected]);
+
+  if (!isRehydrated) {
+    return null;
+  }
 
   return (
     <>
-      {/* {isWalletConnected && !wallet ? null : !isWalletConnected && !wallet ? ( */}
-      {!wallet ? (
+      {!wallet && !isWalletConnected ? (
         <Button onClick={connectWallet} variant="primary" styles="uppercase">
           <span className="flex gap-1 sm:gap-2">
             <Image src={Wallet} alt="Wallet Icon" />
@@ -142,14 +169,14 @@ const WalletConnect = () => {
               onClick={() => setIsModalOpen(true)}
             >
               <div
-                className={`flex items-center gap-2 font-bold ${unsupportedChain ? "text-red-500" : "text-white"}`}
+                className={`flex items-center gap-2 font-bold ${isSupportedChain ? "text-white" : "text-red-500"}`}
               >
-                {unsupportedChain ? (
+                {isSupportedChain ? (
+                  <Image src={Base} width={20} alt="Base Icon" />
+                ) : (
                   <div className="rounded-full border border-red-500 p-[3px]">
                     <FaExclamation size={10} />
                   </div>
-                ) : (
-                  <Image src={Base} width={20} alt="Base Icon" />
                 )}
 
                 <p>{formatAddress(wallet.accounts?.[0]?.address)}</p>
@@ -158,7 +185,7 @@ const WalletConnect = () => {
 
             <CustomModal isVisible={isModalOpen} styles="max-w-[360px]">
               <div className="relative flex flex-col justify-center p-4 py-2">
-                {!unsupportedChain ? (
+                {isSupportedChain ? (
                   <>
                     <button
                       className="ml-auto rounded-full p-2.5 hover:bg-black/30"
@@ -187,14 +214,11 @@ const WalletConnect = () => {
                         <span>Base Mainnet</span>
                       </div>
 
-                      {/* <button className="modal-item-button">
-                        <div className="modal-item-button-icon">
-                          <FaArrowRightToBracket size={16} />
-                        </div>
-
-                        <span>Disconnect</span>
-                      </button> */}
-                      {disconnectBtn()}
+                      <DisconnectButton
+                        wallet={wallet}
+                        disconnect={disconnect}
+                        setIsModalOpen={setIsModalOpen}
+                      />
                     </div>
                   </>
                 ) : (
@@ -216,7 +240,13 @@ const WalletConnect = () => {
                       to continue.
                     </p>
 
-                    <div className="space-y-2">{disconnectBtn()}</div>
+                    <div className="space-y-2">
+                      <DisconnectButton
+                        wallet={wallet}
+                        disconnect={disconnect}
+                        setIsModalOpen={setIsModalOpen}
+                      />
+                    </div>
                   </>
                 )}
 

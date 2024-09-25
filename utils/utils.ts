@@ -37,6 +37,13 @@ const chainList = [
     label: "BASE Chain",
     rpcUrl: "https://mainnet.base.org",
   },
+
+  {
+    id: 84532,
+    token: "ETH",
+    label: "BASE Chain Test Name",
+    rpcUrl: "https://sepolia.base.org",
+  },
 ];
 
 export { footerLinks, chainList };

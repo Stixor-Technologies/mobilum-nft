@@ -275,3 +275,42 @@
 .modal-item-button-icon {
   @apply rounded-full border-2 border-black/60 bg-deep-green p-2;
 }
+
+.text {
+  font-family: "Your Font Here", sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.filled {
+  color: white; /* Or any filled color */
+}
+
+.outlined {
+  color: transparent;
+  -webkit-text-stroke: 1px white; /* This creates the outlined effect */
+  position: relative;
+}
+
+.halfFilled {
+  /* position: relative;
+  display: inline-block;
+  font-weight: bold;
+  color: transparent; */
+  /* -webkit-text-stroke: 0.5px white; */
+}
+
+.halfFilled::before {
+  -webkit-text-stroke: 0;
+  clip-path: polygon(0 0, 140% 0, 0% 100%, 0 100%);
+
+  /* content: "r";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  color: white;
+  -webkit-text-stroke: 0;
+  clip-path: polygon(0 0, 140% 0, 0% 100%, 0 100%); */
+}
