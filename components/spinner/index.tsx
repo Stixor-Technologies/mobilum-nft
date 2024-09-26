@@ -11,7 +11,7 @@ const Spinner: FC<SpinnerProps> = ({
 }) => {
   return (
     <div
-      className="m-auto flex h-full w-full items-center justify-center text-center"
+      className=" flex h-full w-full items-center justify-center text-center"
       role="status"
     >
       <svg

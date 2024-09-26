@@ -25,7 +25,6 @@ const ImagesList = () => {
   );
 
   const [loading, setLoading] = useState<boolean>(true);
-  const [isMinting, setIsMinting] = useState<boolean>(false);
   const [isNFTMinted, setIsNftMinted] = useState<boolean>(false);
 
   const nftId = searchParams.get("id");
@@ -56,7 +55,6 @@ const ImagesList = () => {
   useEffect(() => {
     if (nftId && wallet) {
       (async () => {
-        const id = toast.loading("Minting in progress...");
         try {
           const resp = await mintNft(
             Number(nftId),
@@ -64,33 +62,32 @@ const ImagesList = () => {
           );
 
           if (resp?.status === "DECLINED") {
-            return toast.update(id, {
-              render: "Payment Declined",
-              type: "error",
-              isLoading: false,
+            history.replaceState(null, "", "/");
+            return toast.error("Payment Declined", {
+              position: "bottom-right",
               autoClose: 2000,
+              hideProgressBar: true,
             });
           }
 
           setIsNftMinted(true);
 
-          toast.update(id, {
-            render: "Minting completed!",
-            type: "success",
-            isLoading: false,
+          toast.success("Minting completed", {
+            position: "bottom-right",
             autoClose: 2000,
+            hideProgressBar: true,
           });
+
           history.replaceState(null, "", "/");
           setImagesList((prevImagesList) =>
             prevImagesList?.filter((image) => image.id !== Number(nftId)),
           );
         } catch (error) {
           console.log("error", error);
-          toast.update(id, {
-            render: "Minting failed!",
-            type: "error",
-            isLoading: false,
+          toast.error("Minting Failed", {
+            position: "bottom-right",
             autoClose: 2000,
+            hideProgressBar: true,
           });
         }
       })();
@@ -101,17 +98,20 @@ const ImagesList = () => {
     <>
       {loading ? (
         <ListSkeleton />
-      ) : (
-        <ul className="grid grid-cols-[repeat(auto-fill,_minmax(17rem,_1fr))] gap-6">
+      ) : imagesList ? (
+        <ul className="xs:grid-cols-2 mx-auto grid gap-6 sm:w-full sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]">
           {imagesList?.map((imageData) => (
             <NftCard
               key={imageData?.id}
               wallet={wallet}
               handleConnect={handleConnect}
               imageData={imageData}
+              isNFTMinting={Number(nftId)}
             />
           ))}
         </ul>
+      ) : (
+        <>{null}</>
       )}
     </>
   );

@@ -73,14 +73,7 @@ const WalletConnect = () => {
     (state) => state.setIsSupportedChain,
   );
 
-  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
-
-  // useEffect(() => {
-  //   if (wallet) {
-  //     const isSupported = verifyChain(wallet);
-  //     setIsSupportedChain(!isSupported);
-  //   }
-  // }, [wallet]);
+  const [{ wallet }, connect, disconnect] = useConnectWallet();
 
   const connectWallet = async () => {
     const connectedWallets = await connect();
@@ -92,8 +85,6 @@ const WalletConnect = () => {
     }
   };
 
-  // console.log("wallet", wallet);
-
   const copyToClipboard = async () => {
     const address = wallet?.accounts?.[0]?.address;
     if (address) {
@@ -102,13 +93,6 @@ const WalletConnect = () => {
           ethers.getAddress(wallet?.accounts?.[0]?.address),
         );
         setIsCopied(true);
-        // toast("Copied Address", {
-        //   position: "top-right",
-        //   autoClose: 5000,
-        //   hideProgressBar: true,
-
-        //   theme: "light",
-        // });
 
         setTimeout(() => setIsCopied(false), 1500);
       } catch (error) {
@@ -116,11 +100,6 @@ const WalletConnect = () => {
       }
     }
   };
-
-  // if (wallet) {
-  //   let checksum = ethers.getAddress(wallet?.accounts?.[0]?.address);
-  //   console.log("checksum", checksum);
-  // }
 
   useEffect(() => {
     if (wallet?.provider) {
@@ -135,7 +114,6 @@ const WalletConnect = () => {
       });
 
       provider.on("chainChanged", (chainId: ChainId) => {
-        // console.log("chainid", chainId);
         const isSupported = verifyChain(chainId);
         setIsSupportedChain(isSupported);
       });

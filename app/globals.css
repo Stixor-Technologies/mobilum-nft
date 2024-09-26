@@ -302,7 +302,7 @@
 
 .halfFilled::before {
   -webkit-text-stroke: 0;
-  clip-path: polygon(0 0, 140% 0, 0% 100%, 0 100%);
+  clip-path: polygon(0 0, 140% 0, 20% 100%, 0 100%);
 
   /* content: "r";
   position: absolute;

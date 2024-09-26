@@ -5,7 +5,7 @@ import AboutBlob from "@/public/blobs/about-blob.svg";
 
 const AboutUs = () => {
   return (
-    <section className="bg-[url('/about-bg.png')] bg-cover bg-center bg-no-repeat py-32 sm:py-[13vw] 2xl:py-[16rem]">
+    <section className="bg-[url('/about-bg.svg')] bg-cover bg-center bg-no-repeat py-32 sm:py-[13vw] 2xl:py-[11.25rem]">
       <div className="container flex flex-col items-center justify-between gap-[9vw] md:flex-row xl:gap-0">
         <div className="text-white md:w-[60%] md:max-w-[32.1875rem] xl:w-full">
           <h2 className="font-furore text-[clamp(2rem,5vw,4rem)] leading-tight">

@@ -1,9 +1,4 @@
-// "use client";
 import type { Metadata } from "next";
-// import { Web3OnboardProvider, init } from "@web3-onboard/react";
-// import injectedModule from "@web3-onboard/injected-wallets";
-// import coinbaseModule from "@web3-onboard/coinbase";
-// import walletConnectModule from "@web3-onboard/walletconnect";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,7 +10,6 @@ import Blob2 from "@/public/blobs/blob-2.svg";
 
 import "./globals.css";
 import Footer from "@/components/footer";
-// import Header from "@/components/header";
 import WalletProvider from "@/components/wallet-provider";
 
 const jura = Jura({
@@ -55,14 +49,9 @@ export default function RootLayout({
           className="absolute right-0 top-0 -z-10"
         />
 
-        {/* <Header />
-        <main className="pt-[100px]">{children}</main> */}
         <ToastContainer />
 
-        <WalletProvider>
-          {children}
-          {/* <main className="pt-[100px]">{children}</main>  */}
-        </WalletProvider>
+        <WalletProvider>{children}</WalletProvider>
 
         <Footer />
       </body>

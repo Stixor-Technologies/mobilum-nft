@@ -8,7 +8,8 @@ const footerLinks = [
   {
     id: "#About Us",
     title: "About Us",
-    path: "#",
+    path: "https://www.mobilum.com/en/about-us",
+    newTab: true,
   },
 
   {
@@ -20,12 +21,6 @@ const footerLinks = [
   {
     id: "#linkThree",
     title: "Link Three",
-    path: "#",
-  },
-
-  {
-    id: "#contact-us",
-    title: "Contact Us",
     path: "#",
   },
 ];

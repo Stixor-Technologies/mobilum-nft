@@ -4,7 +4,7 @@ const ListSkeleton = () => {
   const numberOfCards = 2;
 
   return (
-    <ul className="grid grid-cols-[repeat(auto-fill,_minmax(17rem,_1fr))] gap-6">
+    <ul className="xs:grid-cols-2 mx-auto grid gap-6 sm:w-full sm:grid-cols-[repeat(auto-fill,_minmax(17rem,_1fr))]">
       {Array.from({ length: numberOfCards }, (_, index) => (
         <li
           key={index}
