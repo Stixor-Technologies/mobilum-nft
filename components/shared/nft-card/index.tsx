@@ -62,7 +62,7 @@ const NftCard: FC<NftCardProps> = ({
         if (fee) setGasFee(fee);
       })();
     }
-  }, [isModalOpen]);
+  }, [isModalOpen, wallet]);
 
   return (
     <>

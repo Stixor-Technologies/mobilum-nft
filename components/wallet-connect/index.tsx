@@ -46,7 +46,7 @@ const DisconnectButton: FC<DisconnetButton> = ({
           disconnect({ label: wallet?.label });
           walletConnected(false);
           setIsModalOpen(false);
-          setIsSupportedChain(false);
+          setIsSupportedChain(true);
         }
       }}
       className="modal-item-button"
@@ -80,10 +80,13 @@ const WalletConnect = () => {
 
     if (connectedWallets?.length) {
       const isSupported = verifyChain(connectedWallets?.[0]?.chains?.[0]?.id);
+      console.log("supported", isSupported);
       setIsSupportedChain(isSupported);
       walletConnected(true);
     }
   };
+
+  console.log("wallet", wallet);
 
   const copyToClipboard = async () => {
     const address = wallet?.accounts?.[0]?.address;
@@ -106,10 +109,9 @@ const WalletConnect = () => {
       const provider = wallet.provider;
 
       provider.on("accountsChanged", (accounts: string[]) => {
-        if (accounts.length === 0) {
+        if (accounts?.length === 0) {
           walletConnected(false);
-          setIsSupportedChain(false);
-          console.log("Wallet disconnected - no accounts found");
+          setIsSupportedChain(true);
         }
       });
 
