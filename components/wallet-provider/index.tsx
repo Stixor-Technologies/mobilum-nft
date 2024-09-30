@@ -2,13 +2,23 @@
 import React, { ReactNode } from "react";
 import { Web3OnboardProvider, init } from "@web3-onboard/react";
 import injectedModule from "@web3-onboard/injected-wallets";
+import metamaskModule from "@web3-onboard/metamask";
+
 import Header from "../header";
 import { chainList } from "@/utils/utils";
 
 const WalletProvider = ({ children }: { children: ReactNode }) => {
   const injected = injectedModule();
 
-  const wallets = [injected];
+  const metamask = metamaskModule({
+    options: {
+      i18nOptions: {
+        enabled: true,
+      },
+    },
+  });
+
+  const wallets = [metamask, injected];
 
   const chains = chainList;
 
