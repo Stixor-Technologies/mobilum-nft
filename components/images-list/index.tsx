@@ -99,7 +99,7 @@ const ImagesList = () => {
       {loading ? (
         <ListSkeleton />
       ) : imagesList ? (
-        <ul className="xs:grid-cols-2 mx-auto grid gap-6 sm:w-full sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]">
+        <ul className="mx-auto grid gap-6 xs:grid-cols-2 sm:w-full sm:grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]">
           {imagesList?.map((imageData) => (
             <NftCard
               key={imageData?.id}

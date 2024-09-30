@@ -117,7 +117,7 @@ const Faqs = () => {
   return (
     <section className="container mb-14 text-white lg:mb-[8.1875rem]">
       <h2 className="text-center font-furore text-[clamp(2rem,5vw,3.5rem)] leading-tight">
-        FAQ'S
+        FAQ&apos;S
       </h2>
 
       <p className="mt-[.9375rem] text-center">

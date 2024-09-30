@@ -7,6 +7,7 @@ import Faqs from "@/components/faq";
 import ImagesList from "@/components/images-list";
 import FloatingNFT from "@/public/floating-nft.png";
 import FloatingNFT2 from "@/public/floating-nft-2.png";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -58,7 +59,9 @@ export default function Home() {
           </div>
         </div>
 
-        <ImagesList />
+        <Suspense>
+          <ImagesList />
+        </Suspense>
       </section>
 
       <AboutUs />
