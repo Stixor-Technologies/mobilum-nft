@@ -25,7 +25,7 @@ const FaqItem = ({
   }, [isOpen]);
   return (
     <div
-      className={`text-green bg-gradient-dark-green mx-auto max-w-[46.125rem] rounded-lg px-3 py-3 duration-100 sm:px-6`}
+      className={`text-green mx-auto max-w-[46.125rem] rounded-lg bg-gradient-dark-green px-3 py-3 duration-100 sm:px-6`}
     >
       <button
         onClick={toggleAccordion}
