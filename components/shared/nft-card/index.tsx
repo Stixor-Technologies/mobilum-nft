@@ -30,6 +30,7 @@ const NftCard: FC<NftCardProps> = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const isSupportedChain = useWalletStore((state) => state.isSupportedChain);
   const [gasFee, setGasFee] = useState<any>();
+  const [loadingGasFee, setLoadingGasFee] = useState<boolean>(false);
   const [isPaying, setIsPaying] = useState<boolean>(false);
   const router = useRouter();
 
@@ -54,12 +55,16 @@ const NftCard: FC<NftCardProps> = ({
   useEffect(() => {
     if (isModalOpen && wallet?.accounts?.[0]?.address) {
       (async () => {
+        setLoadingGasFee(true);
         const fee = await getGasFee(
           ethers.getAddress(wallet?.accounts?.[0]?.address),
           imageData?.id,
         );
 
-        if (fee) setGasFee(fee);
+        if (fee) {
+          setGasFee(fee);
+        }
+        setLoadingGasFee(false);
       })();
     }
   }, [isModalOpen, wallet]);
@@ -137,7 +142,7 @@ const NftCard: FC<NftCardProps> = ({
               </p>
             </div>
 
-            {wallet && gasFee && (
+            {/* {wallet && gasFee && (
               <div className="flex items-center justify-between px-2">
                 <p className="text-alternative text-xs font-normal leading-5 sm:text-sm">
                   Gas Fee
@@ -145,6 +150,21 @@ const NftCard: FC<NftCardProps> = ({
                 <p className="text-default max-w-[55%] truncate text-xs font-normal capitalize leading-5 sm:text-sm">
                   {`${gasFee?.USD_Amount} USD`}
                 </p>
+              </div>
+            )} */}
+
+            {wallet && (
+              <div className="flex items-center justify-between px-2">
+                <p className="text-alternative text-xs font-normal leading-5 sm:text-sm">
+                  Gas Fee
+                </p>
+                {loadingGasFee ? (
+                  <div className="h-3.5 w-16 animate-pulse bg-[#222528]" />
+                ) : (
+                  <p className="text-default max-w-[55%] truncate text-xs font-normal capitalize leading-5 sm:text-sm">
+                    {`${gasFee?.USD_Amount || 0} USD`}
+                  </p>
+                )}
               </div>
             )}
           </div>

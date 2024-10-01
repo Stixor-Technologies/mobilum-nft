@@ -32,6 +32,8 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-green": "linear-gradient(90deg, #55F199 0% ,#127058 100%)",
+        "gradient-dark-green":
+          "linear-gradient(90deg, #194338 0% ,#0C2E25 100%)",
       },
     },
   },

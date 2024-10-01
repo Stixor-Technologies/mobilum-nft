@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="overflow-hidden bg-deep-green">
       <div className="container">
-        <div className="flex flex-col justify-between gap-10 py-10 lg:flex-row lg:items-center lg:pb-[3.75rem] lg:pt-[5.375rem]">
+        <div className="flex flex-col justify-between gap-10 pb-10 pt-[1.75rem] sm:items-center sm:gap-2">
           <Link href={"/"}>
             <Image
               src={FooterLogo}
@@ -18,47 +18,19 @@ const Footer = () => {
             />
           </Link>
 
-          <div className="flex w-full max-w-[59.25rem] flex-col justify-between gap-14 sm:flex-row sm:gap-20 md:gap-14">
-            <div className="flex w-full max-w-[15.625rem] flex-col justify-between gap-6 text-xl font-bold text-white sm:flex-row sm:gap-0 lg:max-w-[19.9375rem]">
-              <ul className="space-y-6">
-                {footerLinks?.slice(0, 2)?.map((link) => (
-                  <li key={link?.id}>
-                    <Link
-                      href={link?.path}
-                      target={`${link?.newTab && "_blank"}`}
-                      className=" transition-colors duration-300 hover:text-light-green"
-                    >
-                      {link?.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <ul className="space-y-6">
-                {footerLinks?.slice(2, 6)?.map((link) => (
-                  <li key={link?.id}>
-                    <Link
-                      href={link?.path}
-                      target={`${link?.newTab && "_blank"}`}
-                      className="transition-colors duration-300 hover:text-light-green"
-                    >
-                      {link?.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/*  We may use it later */}
-            {/* <div className="flex w-full max-w-[21.5rem] flex-col gap-4 sm:gap-5 xl:mr-16">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className=" w-full  rounded border border-white/35 bg-transparent px-3 py-3 text-white"
-              />
-              <Button variant={"primary"}>Join Us</Button>
-            </div> */}
-          </div>
+          <ul className="flex flex-col gap-6 text-xl font-bold text-white sm:flex-row sm:gap-10">
+            {footerLinks?.map((link) => (
+              <li key={link?.id}>
+                <Link
+                  href={link?.path}
+                  target={`${link?.newTab && "_blank"}`}
+                  className=" transition-colors duration-300 hover:text-light-green"
+                >
+                  {link?.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className=" -mx-[100%] h-[0.5px] bg-white/35" />
