@@ -80,13 +80,10 @@ const WalletConnect = () => {
 
     if (connectedWallets?.length) {
       const isSupported = verifyChain(connectedWallets?.[0]?.chains?.[0]?.id);
-      console.log("supported", isSupported);
       setIsSupportedChain(isSupported);
       walletConnected(true);
     }
   };
-
-  console.log("wallet", wallet);
 
   const copyToClipboard = async () => {
     const address = wallet?.accounts?.[0]?.address;

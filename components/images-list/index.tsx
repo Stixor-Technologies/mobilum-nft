@@ -83,7 +83,6 @@ const ImagesList = () => {
             prevImagesList?.filter((image) => image.id !== Number(nftId)),
           );
         } catch (error) {
-          console.log("error", error);
           toast.error("Minting Failed", {
             position: "bottom-right",
             autoClose: 2000,

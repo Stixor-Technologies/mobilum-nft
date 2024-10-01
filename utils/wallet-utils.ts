@@ -3,9 +3,7 @@ import { chainList } from "./utils";
 import { ethers } from "ethers";
 
 const verifyChain = (chainID: ChainId): boolean => {
-  console.log("chain", chainID);
   const currentChainId = parseInt(chainID, 16);
-  console.log(currentChainId);
   return chainList.some((chain) => chain.id === currentChainId);
 };
 
