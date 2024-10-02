@@ -3,7 +3,9 @@ import { BASE_URL } from "./constants";
 
 const getImages = async () => {
   try {
-    const resp = await axios.get(`${BASE_URL}/generate_images`);
+    const resp = await axios.get(`${BASE_URL}/generate_images`, {
+      timeout: 120000, // 2 minutes in milliseconds
+    });
     return resp?.data;
   } catch (err) {
     console.error(err);
