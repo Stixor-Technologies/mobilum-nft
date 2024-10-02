@@ -15,6 +15,10 @@ const config: Config = {
         xs: "440px",
       },
 
+      dropShadow: {
+        button: "-1px 6px 3px rgba(50, 50, 0, 0.5)",
+      },
+
       fontFamily: {
         furore: ["var(--font-furore)"],
       },

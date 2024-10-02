@@ -85,21 +85,21 @@ const NftCard: FC<NftCardProps> = ({
           />
         </button>
 
-        <Button
-          variant="secondary"
-          styles={
-            "absolute bottom-3 sm:bottom-2 left-1/2 -translate-x-1/2 uppercase"
-          }
-          onClick={() => setIsModalOpen(true)}
-        >
-          {isNFTMinting && isNFTMinting === imageData?.id ? (
-            <span className="flex w-full items-center gap-2.5">
-              <Spinner size="size-4" /> Minting
-            </span>
-          ) : (
-            "Buy Now"
-          )}
-        </Button>
+        <div className="drop-shadow-button absolute bottom-3 left-1/2 -translate-x-1/2 sm:bottom-2 ">
+          <Button
+            variant="secondary"
+            styles={" uppercase"}
+            onClick={() => setIsModalOpen(true)}
+          >
+            {isNFTMinting && isNFTMinting === imageData?.id ? (
+              <span className="flex w-full items-center gap-2.5">
+                <Spinner size="size-4" /> Minting
+              </span>
+            ) : (
+              "Buy Now"
+            )}
+          </Button>
+        </div>
       </li>
 
       <CustomModal isVisible={isModalOpen} styles="max-w-[22.5rem]">
