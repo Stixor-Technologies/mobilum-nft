@@ -85,7 +85,7 @@ const NftCard: FC<NftCardProps> = ({
           />
         </button>
 
-        <div className="drop-shadow-button absolute bottom-3 left-1/2 -translate-x-1/2 sm:bottom-2 ">
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 drop-shadow-button sm:bottom-2 ">
           <Button
             variant="secondary"
             styles={" uppercase"}
