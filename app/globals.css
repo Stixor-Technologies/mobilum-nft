@@ -283,34 +283,36 @@
 }
 
 .filled {
-  color: white; /* Or any filled color */
+  color: white;
 }
 
 .outlined {
   color: transparent;
-  -webkit-text-stroke: 1px white; /* This creates the outlined effect */
+  -webkit-text-stroke: 1px white;
   position: relative;
-}
-
-.halfFilled {
-  /* position: relative;
-  display: inline-block;
-  font-weight: bold;
-  color: transparent; */
-  /* -webkit-text-stroke: 0.5px white; */
 }
 
 .halfFilled::before {
   -webkit-text-stroke: 0;
   clip-path: polygon(0 0, 140% 0, 20% 100%, 0 100%);
+}
 
-  /* content: "r";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  color: white;
-  -webkit-text-stroke: 0;
-  clip-path: polygon(0 0, 140% 0, 0% 100%, 0 100%); */
+.page_heading {
+  @apply mb-10 text-center text-3xl font-bold md:text-5xl;
+}
+
+.terms_heading {
+  @apply mb-2 mt-6 text-2xl font-bold sm:mb-4 md:mt-12 md:text-4xl;
+}
+
+.terms_subheading {
+  @apply ml-0 mt-6 text-xl font-medium md:text-2xl;
+}
+
+.term_text {
+  @apply ml-0 mt-2 text-base;
+}
+
+.terms_nestedheading {
+  @apply mt-3 text-lg font-medium md:text-xl;
 }

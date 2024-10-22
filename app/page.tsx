@@ -3,7 +3,6 @@ import Circle from "@/public/icons/circle.svg";
 import Triangle from "@/public/icons/triangle.svg";
 import Square from "@/public/icons/square.svg";
 import AboutUs from "@/components/about";
-import Faqs from "@/components/faq";
 import ImagesList from "@/components/images-list";
 import FloatingNFT from "@/public/floating-nft.png";
 import FloatingNFT2 from "@/public/floating-nft-2.png";
@@ -71,8 +70,7 @@ export default function Home() {
         </Suspense>
       </section>
 
-      <AboutUs />
-      <Faqs />
+      {/* <AboutUs /> */}
     </>
   );
 }
