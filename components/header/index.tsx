@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "@/public/logo.svg";
+// import Link from "next/link";
+// import Image from "next/image";
+// import Logo from "@/public/logo.svg";
 import WalletConnect from "../wallet-connect";
 
 const Header = () => {
@@ -27,7 +27,7 @@ const Header = () => {
       <div className="container">
         <div className={`flex items-center justify-between duration-300 `}>
           <div className="flex">
-            <Link href={"/"}>
+            {/* <Link href={"/"}>
               <Image
                 src={Logo}
                 width={169}
@@ -35,7 +35,7 @@ const Header = () => {
                 alt="header-logo"
                 className="w-[120px] sm:w-auto"
               />
-            </Link>
+            </Link> */}
           </div>
 
           <WalletConnect />

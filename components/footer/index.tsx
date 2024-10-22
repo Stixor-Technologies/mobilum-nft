@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "next/image";
-import FooterLogo from "@/public/footer-logo.svg";
+// import Image from "next/image";
+// import FooterLogo from "@/public/footer-logo.svg";
 import Link from "next/link";
 
 const Footer = () => {
@@ -8,14 +8,14 @@ const Footer = () => {
     <footer className="overflow-hidden bg-deep-green">
       <div className="container">
         <div className="flex flex-col items-center justify-between gap-10 pb-10 pt-[1.75rem] sm:gap-2">
-          <Link href={"/"}>
+          {/* <Link href={"/"}>
             <Image
               src={FooterLogo}
               width={192}
               alt="mobilum-footer-logo"
               className="w-32 max-w-[12rem] md:w-auto"
             />
-          </Link>
+          </Link> */}
         </div>
 
         <div className="-mx-[100%] h-[0.5px] bg-white/35" />
