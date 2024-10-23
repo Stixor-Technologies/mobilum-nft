@@ -210,10 +210,10 @@ const PrivacyPolicy = () => {
           </h2>
           <p className="term_text">
             The Company may transfer User personal data outside the European
-            Economic Area (EEA) or the User's country of residence. We strive to
-            ensure compliance with applicable regulations when transferring data
-            internationally, which may include implementing contractual
-            safeguards.
+            Economic Area (EEA) or the User&apos;s country of residence. We
+            strive to ensure compliance with applicable regulations when
+            transferring data internationally, which may include implementing
+            contractual safeguards.
           </p>
         </li>
 
@@ -263,7 +263,9 @@ const PrivacyPolicy = () => {
         </li>
 
         <li>
-          <h2 className="terms_subheading">Security of User's Personal Data</h2>
+          <h2 className="terms_subheading">
+            Security of User&apos;s Personal Data
+          </h2>
           <p className="term_text">
             The Company employs various security measures, including physical,
             technical, and administrative safeguards, to protect personal data.
@@ -278,7 +280,7 @@ const PrivacyPolicy = () => {
           </h2>
           <p className="term_text">
             User personal data is retained for five years following the
-            termination of the User's relationship with the Company, in
+            termination of the User&apos;s relationship with the Company, in
             compliance with anti-money laundering requirements.
           </p>
         </li>
@@ -298,9 +300,9 @@ const PrivacyPolicy = () => {
             Links to Third-Party Websites, Plug-ins, and Applications
           </h2>
           <p className="term_text">
-            The Company's website may include links to third-party sites. We do
-            not control these external entities and recommend Users review their
-            privacy policies.
+            The Company&apos;s website may include links to third-party sites.
+            We do not control these external entities and recommend Users review
+            their privacy policies.
           </p>
         </li>
 
@@ -329,7 +331,7 @@ const PrivacyPolicy = () => {
           </h2>
           <p className="term_text">
             For any inquiries or complaints regarding this Data Protection and
-            Privacy Policy, please contact the Company's support team at{" "}
+            Privacy Policy, please contact the Company&apos;s support team at{" "}
             <Link className="underline" href={"mailto:info@123nft.art"}>
               info@123nft.art
             </Link>
